@@ -20,12 +20,13 @@ base on macos 15.5
 > 下文会讲到哪些应用有loginitem相关的开关. 注意并不是每个应用都有这个设置,微信(v3.8.10)就没有,微信这回良心了.
 
 mac系统的服务管理是通过plist文件来描述的. plist文件位于以下的位置（来源于man手册）
-~/Library/LaunchAgents         Per-user agents provided by the user.
-/Library/LaunchAgents          Per-user agents provided by the administrator.
-/Library/LaunchDaemons         System wide daemons provided by the administrator.
-/System/Library/LaunchAgents   OS X Per-user agents.
-/System/Library/LaunchDaemons  OS X System wide daemons.
-
+```
+~/Library/LaunchAgents         Per-user agents provided by the user.  
+/Library/LaunchAgents          Per-user agents provided by the administrator.  
+/Library/LaunchDaemons         System wide daemons provided by the administrator.  
+/System/Library/LaunchAgents   OS X Per-user agents.  
+/System/Library/LaunchDaemons  OS X System wide daemons.  
+```
 > 一般我们可能要操作的是前3个目录.
 
 ## mac系统服务的管理
@@ -38,13 +39,13 @@ sudo launchctl list       # 用于获取...  // 我也不清楚
 # 目前已知的是,命令有没有sudo,输出是不一样的, 不是包含的关系.或许可以简单理解为当前用户和root用户
 # 另外,list子命令属于"LEGACY SUBCOMMANDS" (可能mac官方自己也意识到了launchctl的混乱)
 
-#参考deepseek的说法:
-在macOS中，`launchctl`命令在较新的版本中（从macOS 10.10 Yosemite开始）引入了新的管理方式，称为"launchd domain"，
-并且逐步淘汰了一些旧的子命令（被标记为LEGACY）。
-但是，`launchctl list`仍然被广泛使用，尽管它被标记为LEGACY，但苹果还没有完全移除它。
+# 参考deepseek的说法:
+# 在macOS中，`launchctl`命令在较新的版本中（从macOS 10.10 Yosemite开始）引入了新的管理方式，称为"launchd domain"，
+# 并且逐步淘汰了一些旧的子命令（被标记为LEGACY）。
+# 但是，`launchctl list`仍然被广泛使用，尽管它被标记为LEGACY，但苹果还没有完全移除它。
 
-launchctl print或许是新的代替命令, 但是现在它还没有是, 它并没有能输出所有的服务,
-另外还引入了让人费解的domain概念, domain列表如下.
+# launchctl print或许是新的代替命令, 但是现在它还没有是, 它并没有能输出所有的服务,
+# 另外还引入了让人费解的domain概念, domain列表如下.
 system/[service-name]
 user/<uid>/[service-name]
 gui/<uid>/[service-name]
